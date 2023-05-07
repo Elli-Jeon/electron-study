@@ -2,6 +2,7 @@ import { app, BrowserWindow, shell, ipcMain } from "electron";
 import { release } from "node:os";
 import { join } from "node:path";
 import { update } from "./update";
+import { execFile, ChildProcess } from "child_process";
 
 // The built directory structure
 //
