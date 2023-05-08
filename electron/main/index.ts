@@ -2,7 +2,7 @@ import { app, BrowserWindow, shell, ipcMain } from "electron";
 import { release } from "node:os";
 import { join } from "node:path";
 import { update } from "./update";
-import { execFile, ChildProcess } from "child_process";
+import { execFile, ChildProcess, spawn } from "child_process";
 import path from "path";
 import fs from "fs";
 
@@ -67,13 +67,22 @@ async function createWindow() {
     win.loadFile(indexHtml);
   }
 
-  try {
-    const p = path.join(__dirname, "../../obs/obs.txt");
-    var data = fs.readFileSync(p, "utf8");
+  // python socket spawn : success
+  const script = path.join(__dirname, "../../py", "testFlask.py");
+  console.log(script);
+
+  const server = spawn("python3", [script]);
+
+  server.on("close", () => {
+    console.log("close");
+  });
+
+  server.stdout.on("data", (data: any) => {
     console.log(data.toString());
-  } catch (e) {
-    console.log("Error:");
-  }
+  });
+  server.stderr.on("error", (err) => {
+    console.error("error");
+  });
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on("did-finish-load", () => {
