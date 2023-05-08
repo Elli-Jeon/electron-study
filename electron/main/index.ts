@@ -3,6 +3,8 @@ import { release } from "node:os";
 import { join } from "node:path";
 import { update } from "./update";
 import { execFile, ChildProcess } from "child_process";
+import path from "path";
+import fs from "fs";
 
 // The built directory structure
 //
@@ -63,6 +65,14 @@ async function createWindow() {
     win.webContents.openDevTools();
   } else {
     win.loadFile(indexHtml);
+  }
+
+  try {
+    const p = path.join(__dirname, "../../obs/obs.txt");
+    var data = fs.readFileSync(p, "utf8");
+    console.log(data.toString());
+  } catch (e) {
+    console.log("Error:");
   }
 
   // Test actively push message to the Electron-Renderer

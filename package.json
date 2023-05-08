@@ -1,6 +1,6 @@
 {
   "name": "electron-study",
-  "version": "2.2.0",
+  "version": "0.1.2",
   "main": "dist-electron/main/index.js",
   "description": "Electron Vite React boilerplate.",
   "author": "Elli Jeon",
@@ -38,5 +38,9 @@
   },
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elli-Jeon/electron-study.git"
   }
 }
