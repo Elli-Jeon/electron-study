@@ -1,5 +1,5 @@
 {
-  "appId": "com.electron.${productName}",
+  "appId": "com.electron-study",
   "asar": true,
   "directories": {
     "output": "release/${version}"
@@ -30,8 +30,8 @@
     "url": "https://github.com/electron-vite/electron-vite-react/releases/download/v0.9.9/"
   },
   "extraResources": {
-    "from": "obs",
-    "to": "obs",
+    "from": "DOR",
+    "to": "DOR",
     "filter": ["**/*"]
   }
 }
