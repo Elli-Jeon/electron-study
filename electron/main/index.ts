@@ -68,6 +68,7 @@ async function createWindow() {
   }
 
   // python socket spawn : success
+  // => exe file spawn이 되어야 함. 결국 python => exe 시킬 거라서
   const script = path.join(__dirname, "../../py", "testFlask.py");
   console.log(script);
 
