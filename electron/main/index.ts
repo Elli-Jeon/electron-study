@@ -70,21 +70,26 @@ async function createWindow() {
   // python socket spawn : success
   // => exe file spawn이 되어야 함. 결국 python => exe 시킬 거라서
   // or python-shell 사용
-  const script = path.join(__dirname, "../../py", "testFlask.py");
-  console.log(script);
 
-  const server = spawn("python3", [script]);
+  // 1. exe spawn
+  const script = path.join(__dirname, "../../DOR");
 
-  server.on("close", () => {
+  const DOR = spawn("DOR.exe", { cwd: script });
+
+  DOR.on("close", () => {
     console.log("close");
   });
 
-  server.stdout.on("data", (data: any) => {
-    console.log(data.toString());
-  });
-  server.stderr.on("error", (err) => {
-    console.error("error");
-  });
+  // 2. python spawn
+  // const script = path.join(__dirname, "../../py", "testFlask.py");
+  // const server = spawn("python3", [script]);
+
+  // server.stdout.on("data", (data: any) => {
+  //   console.log(data.toString());
+  // });
+  // server.stderr.on("error", (err) => {
+  //   console.error("error");
+  // });
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on("did-finish-load", () => {
